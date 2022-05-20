@@ -20,10 +20,17 @@ function roundRobin(array, index=0) {
 }
 
 const getProcess = roundRobin([...processes.values()]);
-for (let thisProcess of processes.values()) 
-  console.log('process ', getProcess().pid);
-// console.log('process ', getProcess().pid);
-// console.log('process ', getProcess().pid);
+
+await setTimeout(() => {}, 100);
+for (let i = 0; i < 100; i++)
+  console.count(getProcess().pid);
+setTimeout(() => {
+  for (let thisProcess of [...processes.values(), ...processes.values()]) {
+    console.log('process ', getProcess().pid);
+    console.count(getProcess().pid);
+    thisProcess.send('Process this message');
+  } 
+}, 1000)
 
 
 
